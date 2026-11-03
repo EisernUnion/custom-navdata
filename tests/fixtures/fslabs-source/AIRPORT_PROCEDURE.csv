@@ -1,0 +1,28 @@
+RECD_TYPE,CUST_AREA,SECT_CODE,ARPT_IDENT,ARPT_ICAO_CODE,SUBS_CODE,PROC_IDENT,ROUTE_TYPE,TRANSITION_IDENT,SEQ_NR,FIX_IDENT,FIX_ICAO_CODE,FIX_SECT_CODE,FIX_SUBS_CODE,CONT_NR,WAYPOINT_DESCR_CODE,TURN_DIR,RNP,PATH_AND_TERMINATION,TURN_DIR_VALID,RECOMMENDED_NAVAID,RECOMMENDED_NAVAID_ICAO_CODE,ARC_RADIUS,THETA,RHO,MAG_COURSE,ROUTE_DISTANCE_HOLDING_DISTANCE_OR_TIME,RECOMMENDED_NAVAID_SECT_CODE,RECOMMENDED_NAVAID_SUBS_CODE,ALT_DESCR,ATC_IND,ALT_1,ALT_2,TRANSITION_ALT,SPEED_LIMIT,VERTICAL_ANGLE,CENTER_FIX_OR_TAA_PROCEDURE_TURN_IND,MULTIPLE_CODE_OR_TAA_SECTOR_IDENT,MULTIPLE_CODE_OR_TAA_SECTOR_ICAO_CODE,MULTIPLE_CODE_OR_TAA_SECTOR_SECT_CODE,MULTIPLE_CODE_OR_TAA_SECTOR_SUBS_CODE,GNSS_FMS_INDICATION,SPEED_LIMIT_DESCR,APCH_ROUTE_QUALIFIER_1,APCH_ROUTE_QUALIFIER_2,VERTICAL_SCALE_FACTOR,FILE_RECD_NR,CYCLE
+S,EUR,P,LXGB,LX,F,R09,A,PIMOS,10,PIMOS,LE,E,A,1,E CA, ,10,IF, ,    ,  ,,,,,    , , ,+,A,9000,,,240,,     ,,  , , ,B,-,P,S,   ,1028773,1612
+S,EUR,P,LXGB,LX,F,R09,A,PIMOS,20,BUGOV,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028775,1709
+S,EUR,P,LXGB,LX,F,R09,A,PIMOS,30,GB092,LE,P,C,1,E  B, ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028777,1610
+S,EUR,P,LXGB,LX,F,R09,A,PIMOS,40,GB094,LE,P,C,1,E   ,R,302,RF, ,    ,  ,4300,,,,0049, , , , ,,,,   ,,GB403,,LX,P,C,B, ,P,S,   ,1028779,1906
+S,EUR,P,LXGB,LX,F,R09,A,PIMOS,50,GB09F,LE,P,C,1,EE  , ,302,TF, ,    ,  ,,,,,    , , , , ,1500,,,160,,     ,,  , , ,B,-,P,S,   ,1028781,1610
+S,EUR,P,LXGB,LX,F,R09,R,,20,GB09F,LE,P,C,1,E  F, ,302,IF, ,    ,  ,,,,,    , , , , ,1500,,,160,,GBR  ,,LX,D, ,B,-,P,S,   ,1028783,1612
+S,EUR,P,LXGB,LX,F,R09,R,,25,GB096,LE,P,C,1,E   ,R,302,RF, ,    ,  ,1600,,,,0035, , ,+, ,380,,,   ,-3,GB409,,LX,P,C,B, ,P,S,   ,1028785,1906
+S,EUR,P,LXGB,LX,F,R09,R,,30,RW09,LX,P,G,1,GY M, ,302,TF, ,    ,  ,,,,89,0010, , , , ,61,,,   ,-3,     ,,  , , ,B, ,P,S,   ,1028787,1711
+S,EUR,P,LXGB,LX,F,R09,R,,40,GBM02,LE,P,C,1,E M , ,302,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028789,1711
+S,EUR,P,LXGB,LX,F,R09,R,,50,KUXOX,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028791,1711
+S,EUR,P,LXGB,LX,F,R09,R,,60,PIMOS,LE,E,A,1,EYC , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028793,1711
+S,EUR,P,LXGB,LX,F,R09,R,,70,UPMUP,LE,P,C,1,E   ,R,10,DF, ,    ,  ,,,,,    , , , , ,4000,,,230,,     ,,  , , ,B,-,P,S,   ,1028795,1811
+S,EUR,P,LXGB,LX,F,R09,R,,80,UPMUP,LE,P,C,1,EE H,L,,HM, ,    ,  ,,,,305,T010, , , , ,,,,230,,     ,,  , , ,B,-,P,S,   ,1028797,1811
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,10,PIMOS,LE,E,A,1,E  A, ,10,IF, ,    ,  ,,,,,    , , ,+,A,9000,,,240,,     ,,  , , ,B,-,P,S,   ,1028799,1612
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,20,GB270,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028801,1610
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,30,GB272,LE,P,C,1,E   ,R,10,RF, ,    ,  ,4900,,,,0094, , , , ,,,,   ,,GB501,,LX,P,C,B, ,P,S,   ,1028803,1906
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,40,KUXOX,LE,P,C,1,E  B, ,10,TF, ,    ,  ,,,,,    , , , , ,,,,210,,     ,,  , , ,B,-,P,S,   ,1028805,1709
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,50,GB276,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028807,1610
+S,EUR,P,LXGB,LX,F,R27,A,PIMOS,60,GB27F,LE,P,C,1,EE  , ,302,TF, ,    ,  ,,,,,    , , , , ,1500,,,160,,     ,,  , , ,B,-,P,S,   ,1028809,1610
+S,EUR,P,LXGB,LX,F,R27,R,,20,GB27F,LE,P,C,1,E  F, ,302,IF, ,    ,  ,,,,,    , , , , ,1500,,,160,,GBR  ,,LX,D, ,B,-,P,S,   ,1028811,1612
+S,EUR,P,LXGB,LX,F,R27,R,,30,RW27,LX,P,G,1,GY M, ,302,TF, ,    ,  ,,,,269,0045, , , , ,61,,,   ,-3,     ,,  , , ,B, ,P,S,   ,1028813,1711
+S,EUR,P,LXGB,LX,F,R27,R,,40,GBM03,LE,P,C,1,E M , ,302,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028815,1711
+S,EUR,P,LXGB,LX,F,R27,R,,50,GBM04,LE,P,C,1,E   ,L,10,RF, ,    ,  ,2500,,,,0052, , , , ,,,,185,,GB509,,LX,P,C,B,-,P,S,   ,1028817,1906
+S,EUR,P,LXGB,LX,F,R27,R,,60,GBM05,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028819,1711
+S,EUR,P,LXGB,LX,F,R27,R,,70,GBM06,LE,P,C,1,E   ,L,10,RF, ,    ,  ,4200,,,,0036, , , , ,,,,   ,,GB513,,LX,P,C,B, ,P,S,   ,1028821,1906
+S,EUR,P,LXGB,LX,F,R27,R,,80,UPMUP,LE,P,C,1,E   , ,10,TF, ,    ,  ,,,,,    , , , , ,4000,,,   ,,     ,,  , , ,B, ,P,S,   ,1028823,1811
+S,EUR,P,LXGB,LX,F,R27,R,,90,UPMUP,LE,P,C,1,EE H,L,,HM, ,    ,  ,,,,305,T010, , , , ,,,,   ,,     ,,  , , ,B, ,P,S,   ,1028825,1811

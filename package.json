@@ -1,0 +1,46 @@
+{
+  "name": "bavirtual-custom-navdata",
+  "version": "1.0.0",
+  "productName": "BAVirtual Custom Nav Data",
+  "description": "BAVirtual custom navigation data tools for Fenix and FSLabs aircraft.",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:ui": "npm run build && electron tests/ui-smoke.cjs",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && concurrently --names typescript,electron \"tsc --watch --preserveWatchOutput\" \"electron . --dev\"",
+    "package": "npm run build && electron-forge package --platform=win32 --arch=x64",
+    "make": "npm run build && electron-forge make --platform=win32 --arch=x64",
+    "release": "npm run build && electron-forge release --platform=win32 --arch=x64"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^8.0.1",
+    "@electron-forge/maker-squirrel": "^8.0.1",
+    "@electron-forge/publisher-github": "^8.0.1",
+    "@types/electron-squirrel-startup": "^1.0.2",
+    "concurrently": "^10.0.6",
+    "electron": "^45.2.0",
+    "electron-reloader": "^2.0.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "update-electron-app": "^3.3.0"
+  },
+  "author": "BAVirtual",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bavirtual/custom-navdata.git"
+  },
+  "homepage": "https://github.com/bavirtual/custom-navdata#readme",
+  "bugs": {
+    "url": "https://github.com/bavirtual/custom-navdata/issues"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

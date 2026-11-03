@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'">
+    <title>BAVirtual Custom Nav Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="brand-bar"><span class="brand">BAVirtual</span></div>
+    <main>
+        <header><div><h1>Custom Nav Data</h1></div><button id="refresh" type="button">Rescan Databases</button></header>
+        <div class="package-picker"><label for="data-package">Custom data package</label><select id="data-package" disabled><option>Loading packages…</option></select><p id="package-description"></p><p class="install-note">Close Fenix, FSLabs and any navdata updater before inserting. A backup is created automatically.</p></div>
+        <p id="operation-feedback" role="status" aria-live="polite" hidden></p>
+        <div class="workspace-heading"><h2>Aircraft Databases</h2></div>
+        <div class="tabs" role="tablist" aria-label="Aircraft platform">
+            <button id="tab-fenix" role="tab" aria-selected="true" aria-controls="platform-panel" data-platform="fenix">Fenix</button>
+            <button id="tab-fslabs" role="tab" aria-selected="false" aria-controls="platform-panel" tabindex="-1" data-platform="fslabs">FSLabs</button>
+        </div>
+        <section id="platform-panel" role="tabpanel" aria-labelledby="tab-fenix">
+            <div class="panel-heading"><div><h2 id="platform-title">Fenix databases</h2><p id="platform-description">Installed navigation database files</p></div><span class="file-type" id="file-type">.db3</span></div>
+            <h3>Scan location</h3>
+            <p id="location" class="location"></p>
+            <p id="status" role="status" aria-live="polite">Ready to scan.</p>
+            <div class="table-wrap"><table id="database-table" hidden>
+                <thead><tr><th>System</th><th>File</th><th>Size</th><th>Last modified</th><th>Custom data</th><th>Action</th></tr></thead>
+                <tbody id="files"></tbody>
+            </table></div>
+        </section>
+        <footer><span>BAVirtual Custom Nav Data</span><span>Top-level folders only · Insertions backed up automatically</span></footer>
+    </main>
+    <script type="module" src="../dist/renderer.js"></script>
+</body>
+</html>
