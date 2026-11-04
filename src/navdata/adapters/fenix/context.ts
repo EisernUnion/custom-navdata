@@ -25,7 +25,7 @@ export class FenixPlanContext {
         }
         const metadata = db.prepare('SELECT schema_version FROM ps_runtime_metadata').all();
         if (metadata.length !== 1 || metadata[0].schema_version !== 9)
-            throw new UnsupportedSchemaError('This Fenix runtime schema is not supported (expected version 9).');
+            throw new UnsupportedSchemaError(`This Fenix runtime schema is not supported (expected version 9, found ${metadata.length ? metadata.map(row => String(row.schema_version)).join(', ') : 'no metadata row'}).`);
         expectOne(matchingRows(db, 'tbl_pa_airports', { airport_identifier: data.airport }), `${data.airport} airport`);
         // Preserve the existing PC:<integer> ID convention, including orphaned runtime IDs.
         this.nextWaypointId = Number(db.prepare(`SELECT MAX(value) AS value FROM (
