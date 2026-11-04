@@ -18,14 +18,18 @@ export class FenixPlanContext {
     constructor(readonly db: DatabaseSync, readonly data: NavDataPackage) {
         if (data.navaids?.length)
             throw new UnsupportedSchemaError('This Fenix adapter does not support custom navaid insertion yet.');
-        for (const table of ['tbl_pa_airports', 'tbl_pg_runways', 'tbl_pc_terminal_waypoints', 'tbl_ea_enroute_waypoints', 'tbl_pf_iaps', 'ps_runtime_waypoints', 'ps_runtime_procedures', 'ps_runtime_metadata']) {
+        const requiredTables = ['tbl_pa_airports', 'tbl_pg_runways', 'tbl_pc_terminal_waypoints', 'tbl_pf_iaps', 'ps_runtime_waypoints', 'ps_runtime_procedures', 'ps_runtime_metadata'];
+        if (data.references.some(reference => reference.scope === 'enroute'))
+            requiredTables.push('tbl_ea_enroute_waypoints');
+        for (const table of requiredTables) {
             if (!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?").get(table)) {
                 throw new UnsupportedSchemaError(`Unsupported Fenix layout: ${table} is missing.`);
             }
         }
         const metadata = db.prepare('SELECT schema_version FROM ps_runtime_metadata').all();
-        if (metadata.length !== 1 || metadata[0].schema_version !== 9)
-            throw new UnsupportedSchemaError(`This Fenix runtime schema is not supported (expected version 9, found ${metadata.length ? metadata.map(row => String(row.schema_version)).join(', ') : 'no metadata row'}).`);
+        const supportedSchemaVersions = [9, 11];
+        if (metadata.length !== 1 || !supportedSchemaVersions.includes(Number(metadata[0].schema_version)))
+            throw new UnsupportedSchemaError(`This Fenix runtime schema is not supported (expected version 9 or 11, found ${metadata.length ? metadata.map(row => String(row.schema_version)).join(', ') : 'no metadata row'}).`);
         expectOne(matchingRows(db, 'tbl_pa_airports', { airport_identifier: data.airport }), `${data.airport} airport`);
         // Preserve the existing PC:<integer> ID convention, including orphaned runtime IDs.
         this.nextWaypointId = Number(db.prepare(`SELECT MAX(value) AS value FROM (

@@ -68,3 +68,12 @@ test('Salzburg install is idempotent', async t => {
     assert.equal(again.success, true);
     assert.deepEqual(await readFile(f.file), before);
 });
+
+test('Fenix schema 11 supports Salzburg without unused enroute-waypoint table', async t => {
+    const f = await fixture(t);
+    edit(f.file, db => db.exec('UPDATE ps_runtime_metadata SET schema_version=11; DROP TABLE tbl_ea_enroute_waypoints;'));
+    assert.equal(f.api.inspect('fenix', f.file)[0].state, 'missing');
+    const result = await f.api.install('fenix', f.file, 'salzburg', f.backupDir);
+    assert.equal(result.success, true, result.message);
+    assert.equal(f.api.inspect('fenix', f.file)[0].state, 'installed');
+});
