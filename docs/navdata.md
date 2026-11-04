@@ -2,6 +2,8 @@
 
 The first package is **Gibraltar RNAV approaches**, version 1.0.0. Both platforms use normalized content with 20 terminal waypoints and 27 approach legs. Fenix retains R09-V / R27-V; FSLabs uses the supplied R09 / R27 definitions. Content is bundled with the app; scans and inserts do not download or execute remote code.
 
+The second package is **Salzburg R33-C circling approach** (LOWS), Fenix only. It has four terminal waypoints (WPSI, WS900, WS903, WS33C), four final legs (`IF`, `TF`, `RF`, `TF` to RW33) and a missed approach `CA` leg (route `Z`, no fix, 333° to 4000 ft). Legs without a fix are supported by the Fenix adapter only; FSLabs reports such packages as unsupported. Route `Z` legs get no separate `ps_runtime_procedures` row, matching existing Navigraph data. Waypoint types are taken from the working LOWS data.
+
 ## Design and extension
 
 See [architecture.md](architecture.md) for the code map and application data flow.

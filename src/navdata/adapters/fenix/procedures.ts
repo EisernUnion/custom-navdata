@@ -22,9 +22,11 @@ export function planApproaches(context: FenixPlanContext): void {
         const runtimeGroups = new Map<string, PlannedRow>();
         const expectedKeys = new Set<string>();
         for (const leg of approach.legs) {
-            const fix = fixes.get(`${leg.fixType}:${leg.fix}`);
-            if (!fix)
+            const fix = leg.fix ? fixes.get(`${leg.fixType}:${leg.fix}`) : undefined;
+            if (leg.fix && !fix)
                 throw new DataConflictError(`Cannot resolve ${leg.fix} for ${approach.ident}.`);
+            if (!leg.fix && leg.path !== 'CA')
+                throw new DataConflictError(`${approach.ident} ${leg.path} leg needs a fix.`);
             const center = leg.center ? fixes.get(`terminal:${leg.center}`) : undefined;
             if (leg.center && !center)
                 throw new DataConflictError(`Cannot resolve arc center ${leg.center}.`);
@@ -50,12 +52,12 @@ export function planApproaches(context: FenixPlanContext): void {
                     path_termination: leg.path,
                     gnss_fms_indication: 'B',
                     ctl: 'N',
-                    waypoint_identifier: leg.fix,
-                    waypoint_icao_code: fix.region,
-                    waypoint_latitude: fix.latitude,
-                    waypoint_longitude: fix.longitude,
-                    waypoint_ref_table: fix.table,
-                    waypoint_identifier_id: fix.id,
+                    waypoint_identifier: leg.fix ?? null,
+                    waypoint_icao_code: fix?.region ?? null,
+                    waypoint_latitude: fix?.latitude ?? null,
+                    waypoint_longitude: fix?.longitude ?? null,
+                    waypoint_ref_table: fix?.table ?? null,
+                    waypoint_identifier_id: fix?.id ?? null,
                     waypoint_description_code: leg.description,
                     turn_direction: leg.turn ?? null,
                     altitude_description: leg.altitudeDescription ?? null,
@@ -63,7 +65,7 @@ export function planApproaches(context: FenixPlanContext): void {
                     speed_limit_description: leg.speed === undefined ? null : '-',
                     speed_limit: leg.speed ?? null,
                     vertical_angle: leg.verticalAngle ?? null,
-                    arc_radius: center ? Math.round(nauticalMiles(center, fix) * 10) / 10 : null,
+                    arc_radius: center && fix ? Math.round(nauticalMiles(center, fix) * 10) / 10 : null,
                     center_waypoint: center?.ident ?? null,
                     center_waypoint_icao_code: center?.region ?? null,
                     center_waypoint_latitude: center?.latitude ?? null,
@@ -83,7 +85,8 @@ export function planApproaches(context: FenixPlanContext): void {
                 route_type: leg.route,
                 transition_identifier: leg.transition
             };
-            runtimeGroups.set(group, {
+                        // Missed-approach legs (route Z) belong to the final route; the runtime lists no separate head for them.
+            if (leg.route !== 'Z') runtimeGroups.set(group, {
                 table: 'ps_runtime_procedures',
                 key: runtimeKey,
                 values: {

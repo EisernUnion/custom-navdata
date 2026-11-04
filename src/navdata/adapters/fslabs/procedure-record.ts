@@ -31,7 +31,7 @@ export function procedureRecord(leg: Leg, key: Row, fix: Reference, center: Refe
     return {
         ...key,
         RECD_TYPE: 'S',
-        FIX_IDENT: leg.fix,
+        FIX_IDENT: leg.fix ?? null,
         FIX_ICAO_CODE: fix.region,
         FIX_SECT_CODE: fix.sector,
         FIX_SUBS_CODE: fix.subsection,
