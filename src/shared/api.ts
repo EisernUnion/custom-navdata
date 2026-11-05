@@ -16,6 +16,8 @@ export interface ScanResult {
     status: 'ready' | 'unavailable' | 'error';
     message: string;
     files: DatabaseFile[];
+    /** True when the user picked the scan folder instead of the platform default. */
+    customLocation?: boolean;
 }
 
 /** The only application capabilities exposed to the sandboxed renderer. */
@@ -23,4 +25,7 @@ export interface NavDataApi {
     scan(): Promise<ScanResult[]>;
     packages(): Promise<PackageInfo[]>;
     install(request: InstallRequest): Promise<InstallResult>;
+    /** Opens a native folder picker; resolves false when cancelled. */
+    selectLocation(platformId: PlatformId): Promise<boolean>;
+    resetLocation(platformId: PlatformId): Promise<void>;
 }

@@ -19,6 +19,8 @@ export class NavDataController {
             selectPlatform: id => this.selectPlatform(id),
             selectPackage: id => this.selectPackage(id),
             scan: () => { void this.scan(); },
+            selectLocation: () => { void this.changeLocation(true); },
+            resetLocation: () => { void this.changeLocation(false); },
             install: request => { void this.install(request); }
         });
     }
@@ -67,6 +69,26 @@ export class NavDataController {
             this.state.scanning = false;
             this.render();
         }
+    }
+
+    private async changeLocation(pick: boolean): Promise<void> {
+        if (this.state.installingPath || this.state.scanning)
+            return;
+        try {
+            if (pick) {
+                if (!await this.api.selectLocation(this.state.platformId))
+                    return;
+            }
+            else
+                await this.api.resetLocation(this.state.platformId);
+            this.state.feedback = null;
+        }
+        catch {
+            this.state.feedback = { state: 'error', message: 'The scan location could not be changed. Try again.' };
+            this.render();
+            return;
+        }
+        await this.scan();
     }
 
     private async install(request: InstallRequest): Promise<void> {
