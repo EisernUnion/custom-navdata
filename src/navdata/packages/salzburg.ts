@@ -7,7 +7,7 @@ export const salzburg: NavDataPackage = {
     id: 'salzburg',
     version: '1.0.0',
     name: 'Salzburg R33-C circling approach',
-    description: 'BAVirtual Salzburg (LOWS) circling approach R33-C with missed approach.',
+    description: 'Salzburg (LOWS) circling approach R33-C with missed approach.',
     airport: 'LOWS',
     icaoRegion: 'LO',
     area: 'EUR',
@@ -20,7 +20,7 @@ export const salzburg: NavDataPackage = {
         { ident: 'WS900', latitude: 47.7838, longitude: 13.0597, type: 'WDF' },
         // End of the arc on the runway 33 centreline.
         { ident: 'WS903', latitude: 47.76258, longitude: 13.02339, type: 'WAF' },
-        // Arc centre, 1 NM from WS903.
+        // Arc centre, 1 NM from WS903. 'A F' Arc Fix, 1st letter pos: 'A' for Arc Center Fix, 'W' = RNAV WPT | 3rd letter pos: Kind of Procedure, F = Approach, D = SID, E = STAR, Z = Multiple
         { ident: 'WS33C', latitude: 47.77015, longitude: 13.04548, type: 'A F' }
     ],
     references: [],
