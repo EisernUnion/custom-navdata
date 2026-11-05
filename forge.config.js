@@ -37,7 +37,7 @@ const config = {
     publishers: [{
         name: '@electron-forge/publisher-github',
         config: {
-            repository: { owner: 'bavirtual', name: 'custom-navdata' },
+            repository: { owner: 'EisernUnion', name: 'custom-navdata' },
             draft: true,
             prerelease: false,
             generateReleaseNotes: true

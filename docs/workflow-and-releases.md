@@ -90,13 +90,17 @@ Then:
 
 Drafts and prereleases are never offered to installed apps.
 
-## Important: which repository releases are published to
+## Where releases are published
 
-`forge.config.js` publishes releases to `bavirtual/custom-navdata`, and the installed app also checks that repository for updates (`src/main/updates.ts`).
+Releases and auto-updates use this repository, `EisernUnion/custom-navdata`:
 
-- Releases and auto-updates only work from the `bavirtual` repository (the release workflow needs write access there).
-- Your fork (`EisernUnion/custom-navdata`) is for development and test builds. To release, open a pull request from your fork to `bavirtual/custom-navdata` and let a maintainer there merge it and push the tag.
-- If you want to publish from your own repository instead, change the owner in `forge.config.js` and `src/main/updates.ts`.
+- `forge.config.js` publishes the draft release here.
+- The installed app checks this repository for updates (`src/main/updates.ts`).
+- The README download link points here.
+
+The release workflow uses the built-in `GITHUB_TOKEN`; no extra secret is needed. The repository must be public so installed apps can reach the update service.
+
+Apps installed from an earlier build still check the old repository. Install one build from a release of this repository manually; after that, updates arrive automatically.
 
 ## Checklist
 
