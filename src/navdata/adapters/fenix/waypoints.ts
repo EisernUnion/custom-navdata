@@ -35,7 +35,7 @@ export function planWaypoints(context: FenixPlanContext): void {
                 waypoint_latitude: waypoint.latitude,
                 waypoint_longitude: waypoint.longitude,
                 waypoint_name: waypoint.ident,
-                waypoint_type: 'W D'
+                waypoint_type: waypoint.type ?? 'W D'
             }
         });
         context.addRuntime(fix);

@@ -1,4 +1,4 @@
-import { DataConflictError } from '../../database/errors.js';
+import { DataConflictError, UnsupportedSchemaError } from '../../database/errors.js';
 import { readNumber, expectOne } from '../../database/values.js';
 import type { FslabsPlanContext } from './context.js';
 import { find } from './lookup.js';
@@ -25,6 +25,8 @@ export function planApproaches(context: FslabsPlanContext): void {
         const sequences = new Map<string, number>();
         const expected = new Set<string>();
         for (const leg of approach.legs) {
+            if (!leg.fix)
+                throw new UnsupportedSchemaError(`${approach.ident} has a leg without a fix, which the FSLabs adapter does not support.`);
             const fix = references.get(`${leg.fixType}:${leg.fix}`);
             if (!fix)
                 throw new DataConflictError(`Cannot resolve ${leg.fix} for ${approach.ident}.`);

@@ -29,10 +29,11 @@ export interface Navaid extends Fix {
 }
 
 export interface Leg {
-    fix: string;
-    fixType: 'terminal' | 'enroute' | 'runway';
-    path: 'IF' | 'TF' | 'RF' | 'DF' | 'HM';
-    route: 'A' | 'R';
+    /** Omitted for legs without a terminating fix, such as CA. */
+    fix?: string;
+    fixType?: 'terminal' | 'enroute' | 'runway';
+    path: 'IF' | 'TF' | 'RF' | 'DF' | 'HM' | 'CA';
+    route: 'A' | 'R' | 'Z';
     transition: string | null;
     description: string;
     altitudeDescription?: '+' | '@';
