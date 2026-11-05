@@ -15,7 +15,7 @@ Download `BAVirtualCustomNavDataSetup.exe` from [GitHub Releases](https://github
 
 Scans are read-only and inspect only the platform folder's direct children. Matching records are reused. Conflicting values are reported without overwriting them. Each insertion creates a SQLite backup, runs in a transaction, and verifies the result.
 
-Fenix is discovered under `C:\ProgramData\Fenix\NavdataDFD`. FSLabs uses `HKCU\Software\FlightSimLabs\MSFS2024\Common_AddonPath`, value `Path_MSFS2024`, plus `fsl-common\FSLabs\NavData`.
+Fenix is discovered under `C:\ProgramData\Fenix\NavdataDFD`. Use **Select custom path** to scan another folder (saved per platform in the app data folder) and **Set default path** to go back. FSLabs uses `HKCU\Software\FlightSimLabs\MSFS2024\Common_AddonPath`, value `Path_MSFS2024`, plus `fsl-common\FSLabs\NavData`.
 
 The included Gibraltar package contains the supplied Fenix and FSLabs approach definitions. FSLabs uses one-minute holding legs. Check the [mapping notes](docs/navdata.md) for source details and platform differences. Database validation is covered by tests; simulator behaviour still needs verification.
 

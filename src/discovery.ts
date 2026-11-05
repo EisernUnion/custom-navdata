@@ -2,6 +2,7 @@ import { platformLocations, type PlatformLocation } from './discovery/locations.
 import { scanDirectory as scanPlatformDirectory } from './discovery/scan-directory.js';
 import { navDataService } from './navdata/registry.js';
 import type { ScanResult } from './shared/api.js';
+import type { PlatformId } from './shared/platforms.js';
 
 export { readFslabsPath } from './discovery/locations.js';
 export type { DatabaseFile, ScanResult } from './shared/api.js';
@@ -9,7 +10,8 @@ export type { DatabaseFile, ScanResult } from './shared/api.js';
 export function scanDirectory(id: ScanResult['id'], name: string, location: string, extension: string): Promise<ScanResult> {
     return scanPlatformDirectory(id, name, location, extension, (platform, file) => navDataService.inspect(platform, file));
 }
-async function discoverPlatform(platform: PlatformLocation): Promise<ScanResult> {
+export type LocationOverrides = Partial<Record<PlatformId, string>>;
+async function discoverPlatform(platform: PlatformLocation, overrides: LocationOverrides): Promise<ScanResult> {
     const base = {
         id: platform.id,
         name: platform.name,
@@ -17,6 +19,9 @@ async function discoverPlatform(platform: PlatformLocation): Promise<ScanResult>
         files: []
     };
     try {
+        const custom = overrides[platform.id];
+        if (custom)
+            return { ...(await scanDirectory(platform.id, platform.name, custom, platform.extension)), customLocation: true };
         const location = await platform.resolve();
         if (location)
             return scanDirectory(platform.id, platform.name, location, platform.extension);
@@ -35,6 +40,6 @@ async function discoverPlatform(platform: PlatformLocation): Promise<ScanResult>
     }
 }
 
-export function discoverDatabases(): Promise<ScanResult[]> {
-    return Promise.all(platformLocations.map(discoverPlatform));
+export function discoverDatabases(overrides: LocationOverrides = {}): Promise<ScanResult[]> {
+    return Promise.all(platformLocations.map(platform => discoverPlatform(platform, overrides)));
 }

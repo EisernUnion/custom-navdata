@@ -56,7 +56,7 @@ function databaseRow(file: DatabaseFile, platform: ScanResult, state: RendererSt
     name.title = file.path;
     const size = (file.size / (1024 * 1024)).toLocaleString(undefined, { maximumFractionDigits: 1 });
     const check = file.packages.find(check => check.packageId === state.packageId);
-    row.append(cell(platform.name, 'system-cell'), name, cell(`${size} MB`, 'size-cell'), cell(new Date(file.modified).toLocaleString(), 'date-cell'), packageCell(check), actionCell(file, platform, check, state, actions));
+    row.append(cell(platform.name, 'system-cell'), name, cell(`${size} MB`, 'size-cell'), cell(new Date(file.modified).toLocaleString(), 'date-cell'), cell(file.header?.cycle || '—', 'cycle-cell'), cell(file.header?.effective || '—', 'effective-cell'), cell(file.header?.revision || '—', 'revision-cell'), packageCell(check), actionCell(file, platform, check, state, actions));
     return row;
 }
 

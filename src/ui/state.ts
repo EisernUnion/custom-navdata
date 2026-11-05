@@ -20,6 +20,8 @@ export interface ViewActions {
     selectPlatform(id: PlatformId): void;
     selectPackage(id: string): void;
     scan(): void;
+    selectLocation(): void;
+    resetLocation(): void;
     install(request: InstallRequest): void;
 }
 

@@ -16,6 +16,8 @@ export function createNavDataView(): NavDataView {
     const packages = element<HTMLSelectElement>('data-package');
     const panel = element('platform-panel');
     const location = element('location');
+    const selectLocation = element<HTMLButtonElement>('select-location');
+    const resetLocation = element<HTMLButtonElement>('reset-location');
     const status = element('status');
     const feedback = element('operation-feedback');
     const description = element('package-description');
@@ -58,6 +60,8 @@ export function createNavDataView(): NavDataView {
             actions = handlers;
             packages.addEventListener('change', () => actions.selectPackage(packages.value));
             refresh.addEventListener('click', () => actions.scan());
+            selectLocation.addEventListener('click', () => actions.selectLocation());
+            resetLocation.addEventListener('click', () => actions.resetLocation());
             tabs.forEach((tab, index) => {
                 tab.addEventListener('click', () => {
                     if (isPlatformId(tab.dataset.platform))
@@ -79,6 +83,8 @@ export function createNavDataView(): NavDataView {
             const platform = getPlatform(state.platformId);
             const result = state.results.find(result => result.id === platform.id);
             refresh.disabled = isBusy(state);
+            selectLocation.disabled = isBusy(state);
+            resetLocation.disabled = isBusy(state) || !result?.customLocation;
             refresh.textContent = state.scanning ? 'Scanning…' : 'Rescan databases';
             platformTitle.textContent = `${platform.name} databases`;
             fileType.textContent = platform.extension;

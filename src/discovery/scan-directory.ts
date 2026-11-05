@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import type { PackageCheck, PlatformId } from '../navdata/types.js';
+import { readHeader } from './header.js';
 import type { ScanResult } from '../shared/api.js';
 
 export type PackageInspector = (platform: PlatformId, file: string) => PackageCheck[];
@@ -28,7 +29,8 @@ export async function scanDirectory(id: ScanResult['id'], name: string, location
                     path: fullPath,
                     size: stat.size,
                     modified: stat.mtime.toISOString(),
-                    packages: inspectPackages(id, fullPath)
+                    packages: inspectPackages(id, fullPath),
+                    header: id === 'fenix' ? readHeader(fullPath) : undefined
                 });
             }
             catch {
