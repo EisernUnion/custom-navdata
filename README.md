@@ -4,7 +4,7 @@ Windows desktop tool for installing BAVirtual custom navigation data into Fenix 
 
 ## Install
 
-Download `BAVirtualCustomNavDataSetup.exe` from [GitHub Releases](https://github.com/bavirtual/custom-navdata/releases/latest). Installed copies check for updates automatically and offer to restart when a new release is downloaded.
+Download `BAVirtualCustomNavDataSetup.exe` from [GitHub Releases](https://github.com/EisernUnion/custom-navdata/releases/latest). Installed copies check for updates automatically and offer to restart when a new release is downloaded.
 
 ## Use
 
@@ -47,7 +47,7 @@ npm version patch
 
 The `vX.Y.Z` tag must match `package.json`. The release workflow builds and uploads a **draft** GitHub Release. Review the installer and release notes, then publish the draft. Keep the installer, `*-full.nupkg`, and `RELEASES` assets together: all three are needed for automatic updates. Drafts and prereleases are not offered to installed users.
 
-Automatic updates use Electron's public update service for `bavirtual/custom-navdata`. Update checks are disabled in development, run at startup and hourly in installed Windows copies, and download in the background. The restart prompt waits for navdata insertion to finish and offers **Restart now** or **Later**.
+Automatic updates use Electron's public update service for `EisernUnion/custom-navdata`. Update checks are disabled in development, run at startup and hourly in installed Windows copies, and download in the background. The restart prompt waits for navdata insertion to finish and offers **Restart now** or **Later**.
 
 ### Windows signing
 

@@ -28,7 +28,7 @@ export function startAutomaticUpdates(): void {
             updater = updateElectronApp({
                 updateSource: {
                     type: UpdateSourceType.ElectronPublicUpdateService,
-                    repo: 'bavirtual/custom-navdata'
+                    repo: 'EisernUnion/custom-navdata'
                 },
                 updateInterval: '1 hour',
                 notifyUser: true,
