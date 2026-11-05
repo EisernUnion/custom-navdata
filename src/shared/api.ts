@@ -1,12 +1,19 @@
 import type { InstallRequest, InstallResult, PackageCheck, PackageInfo } from '../navdata/types.js';
 import type { PlatformId } from './platforms.js';
 
+export interface DatabaseHeader {
+    cycle: string;
+    effective: string;
+    revision: string;
+}
+
 export interface DatabaseFile {
     name: string;
     path: string;
     size: number;
     modified: string;
     packages: PackageCheck[];
+    header?: DatabaseHeader;
 }
 
 export interface ScanResult {

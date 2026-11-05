@@ -36,3 +36,14 @@ test('controller selects and resets the location, then rescans',async()=>{
  assert.deepEqual(calls,['scan','select:fenix','scan','reset:fenix','scan']);
  assert.equal(last.scanning,false);
 });
+
+test('database header is read and the effective range formatted',async t=>{
+ const {DatabaseSync}=await import('node:sqlite');
+ const {readHeader,formatEffective}=await import('../dist/discovery/header.js');
+ const root=await mkdtemp(path.join(tmpdir(),'bav-hdr-'));t.after(()=>rm(root,{recursive:true,force:true}));
+ const file=path.join(root,'a.db3');const db=new DatabaseSync(file);
+ db.exec("CREATE TABLE tbl_hdr_header(cycle TEXT,effective_fromto TEXT,revision TEXT);INSERT INTO tbl_hdr_header VALUES('2611','2910251126','001')");db.close();
+ assert.deepEqual(readHeader(file),{cycle:'2611',effective:'29 Oct – 25 Nov 2026',revision:'001'});
+ assert.equal(readHeader(path.join(root,'missing.db3')),undefined);
+ assert.equal(formatEffective('weird'),'weird');
+});
