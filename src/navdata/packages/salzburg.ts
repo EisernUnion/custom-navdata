@@ -29,11 +29,11 @@ export const salzburg: NavDataPackage = {
             ident: 'R33-C',
             runway: 'RW33',
             legs: [
-                { description: 'E  A', route: 'R', transition: 'FINAL', path: 'IF', fix: 'WPSI', fixType: 'terminal', altitudeDescription: '@', altitude: 2600, speed: 160 },
-                { description: 'E  B', route: 'R', transition: 'FINAL', path: 'TF', fix: 'WS900', fixType: 'terminal', altitudeDescription: '@', altitude: 2600, speed: 160, course: 125, distance: 3.5 },
-                { description: 'E  F', route: 'R', transition: 'FINAL', path: 'RF', fix: 'WS903', fixType: 'terminal', speed: 160, turn: 'R', center: 'WS33C', arcLength: 1, course: 333 },
-                { description: 'G  M', route: 'R', transition: 'FINAL', path: 'TF', fix: 'RW33', fixType: 'runway', altitudeDescription: '@', course: 333, verticalAngle: -3 },
-                { description: '    ', route: 'Z', transition: 'FINAL', path: 'CA', altitudeDescription: '+', altitude: 4000, course: 333 }
+                { description: 'E  A', route: 'R', transition: null, path: 'IF', fix: 'WPSI', fixType: 'terminal', altitudeDescription: '@', altitude: 2600, speed: 160 },
+                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WS900', fixType: 'terminal', altitudeDescription: '@', altitude: 2600, speed: 160, course: 125, distance: 3.5 },
+                { description: 'E  F', route: 'R', transition: null, path: 'RF', fix: 'WS903', fixType: 'terminal', speed: 160, turn: 'R', center: 'WS33C', arcLength: 1, course: 333 },
+                { description: 'G  M', route: 'R', transition: null, path: 'TF', fix: 'RW33', fixType: 'runway', altitudeDescription: '@', course: 333, verticalAngle: -3 },
+                { description: '    ', route: 'Z', transition: null, path: 'CA', altitudeDescription: '+', altitude: 4000, course: 333 }
             ]
         }
     ]

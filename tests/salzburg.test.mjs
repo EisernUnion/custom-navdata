@@ -38,7 +38,7 @@ test('Salzburg R33-C is inserted with legs, waypoints and runtime head', async t
         const legs = db.prepare("SELECT * FROM tbl_pf_iaps WHERE procedure_identifier='R33-C' ORDER BY route_type DESC, seqno").all();
         assert.deepEqual(legs.map(l => [l.route_type, l.seqno, l.path_termination, l.waypoint_identifier]),
             [['Z', 10, 'CA', null], ['R', 10, 'IF', 'WPSI'], ['R', 20, 'TF', 'WS900'], ['R', 30, 'RF', 'WS903'], ['R', 40, 'TF', 'RW33']]);
-        assert.ok(legs.every(l => l.transition_identifier === 'FINAL' && l.airport_identifier === 'LOWS'));
+        assert.ok(legs.every(l => l.transition_identifier === null && l.airport_identifier === 'LOWS'));
         const ids = db.prepare("SELECT waypoint_identifier AS ident, id FROM tbl_pc_terminal_waypoints WHERE region_code='LOWS'").all();
         assert.equal(ids.length, 4);
         const idOf = ident => ids.find(i => i.ident === ident).id;
@@ -56,6 +56,7 @@ test('Salzburg R33-C is inserted with legs, waypoints and runtime head', async t
         assert.equal(head.length, 1);
         assert.equal(head[0].runway_identifier, 'RW33');
         assert.equal(head[0].route_type, 'R');
+        assert.equal(head[0].transition_identifier, null);
         assert.equal(db.prepare('SELECT COUNT(*) AS n FROM ps_runtime_waypoints').get().n, 4);
     });
 });
