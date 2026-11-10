@@ -38,11 +38,13 @@ app.whenReady().then(async () => {
         else if(Date.now()-start>10000){clearInterval(timer);reject(new Error('UI did not load'));}
       },50);
     })`);
-    const ui = await win.webContents.executeJavaScript(`({title:document.title,rows:document.querySelectorAll('#files tr').length,buttons:document.querySelectorAll('.insert-button').length,package:document.querySelector('#data-package').value})`);
+    const ui = await win.webContents.executeJavaScript(`({title:document.title,rows:document.querySelectorAll('#files tr').length,buttons:document.querySelectorAll('.insert-button').length,package:document.querySelector('#data-package').value,fslabsDisabled:document.querySelector('#tab-fslabs').disabled,fslabsAriaDisabled:document.querySelector('#tab-fslabs').getAttribute('aria-disabled')})`);
     assert.equal(ui.title,'BAVirtual Custom Nav Data');
     assert.equal(ui.rows,3);
     assert.equal(ui.buttons,3);
     assert.equal(ui.package,'gibraltar');
+    assert.equal(ui.fslabsDisabled,true);
+    assert.equal(ui.fslabsAriaDisabled,'true');
     const screenshot=path.join(app.getPath('temp'),'bav-navdata-ui.png');
     await writeFile(screenshot,(await win.capturePage()).toPNG());
     await win.webContents.executeJavaScript(`document.querySelector('.insert-button').click()`);
@@ -55,17 +57,13 @@ app.whenReady().then(async () => {
     assert.equal(called.has('fenix'),true);
     assert.equal(await win.webContents.executeJavaScript(`document.querySelectorAll('.insert-button').length`),2);
     await win.webContents.executeJavaScript(`document.querySelector('#tab-fslabs').click()`);
-    assert.equal(await win.webContents.executeJavaScript(`document.querySelectorAll('.insert-button').length`),1);
-    await win.webContents.executeJavaScript(`document.querySelector('.insert-button').click()`);
-    await win.webContents.executeJavaScript(`new Promise((resolve,reject)=>{
-      const start=Date.now(); const timer=setInterval(()=>{
-        if(document.querySelector('#operation-feedback').dataset.state==='success' && !document.querySelector('#refresh').disabled){clearInterval(timer);resolve();}
-        else if(Date.now()-start>10000){clearInterval(timer);reject(new Error('FSLabs insert UI did not settle'));}
-      },50);
-    })`);
-    assert.equal(called.has('fslabs'),true);
-    assert.equal(await win.webContents.executeJavaScript(`document.querySelectorAll('.insert-button').length`),0);
-    console.log('PASS: real Electron preload, package selector, status rows, mock insert action, and FSLabs tab.');
+    const fslabsTab = await win.webContents.executeJavaScript(`({selected:document.querySelector('#tab-fslabs').getAttribute('aria-selected'),panelLabelledBy:document.querySelector('#platform-panel').getAttribute('aria-labelledby'),rows:document.querySelectorAll('#files tr').length,buttons:document.querySelectorAll('.insert-button').length})`);
+    assert.equal(fslabsTab.selected,'false');
+    assert.equal(fslabsTab.panelLabelledBy,'tab-fenix');
+    assert.equal(fslabsTab.rows,3);
+    assert.equal(fslabsTab.buttons,2);
+    assert.equal(called.has('fslabs'),false);
+    console.log('PASS: real Electron preload, package selector, status rows, mock Fenix insert action, and disabled FSLabs tab.');
     console.log('Screenshot:',screenshot);
     app.exit(0);
 }).catch(error=>{console.error(error);app.exit(1);});
