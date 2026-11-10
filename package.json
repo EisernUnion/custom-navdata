@@ -1,6 +1,6 @@
 {
   "name": "bavirtual-custom-navdata",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "productName": "BAVirtual Custom Nav Data",
   "description": "BAVirtual custom navigation data tools for Fenix and FSLabs aircraft.",
   "main": "dist/main.js",
