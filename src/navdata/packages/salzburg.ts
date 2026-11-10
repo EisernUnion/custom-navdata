@@ -5,7 +5,7 @@ import type { NavDataPackage } from '../types.js';
 // See docs/navdata.md for mapping notes.
 export const salzburg: NavDataPackage = {
     id: 'salzburg',
-    version: '1.0.0',
+    version: '1.0.1',
     name: 'Salzburg R33-C circling approach',
     description: 'Salzburg (LOWS) circling approach R33-C with missed approach.',
     airport: 'LOWS',
