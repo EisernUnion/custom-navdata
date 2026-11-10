@@ -1,4 +1,10 @@
-# BAVirtual Custom Nav Data
+# Customized Version of the BAVirtual Custom Nav Data
+
+## Added Procedures
+- LOWS: Salzburg R33-C circling approach Rwy 33
+- LFKC: Calvi MVL Circling Approach Rwy 36
+
+
 
 Windows desktop tool for installing BAVirtual custom navigation data into Fenix and FSLabs databases.
 
