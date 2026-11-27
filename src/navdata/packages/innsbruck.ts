@@ -13,12 +13,12 @@ export const innsbruck: NavDataPackage = {
     magneticVariation: 4.0,
     waypoints: [
         // Einstieg im Osten (Breakout-Track 230°M / 234°T)
-        { ident: 'WI001', latitude: 47.27458, longitude: 11.44606, type: 'WIF' },
-        { ident: 'WI002', latitude: 47.22919, longitude: 11.35135, type: 'WIF' },
-        { ident: 'WI003', latitude: 47.22722, longitude: 11.28267, type: 'WIF' },
+        { ident: 'WI901', latitude: 47.27458, longitude: 11.44606, type: 'WIF' },
+        { ident: 'WI902', latitude: 47.22919, longitude: 11.35135, type: 'WIF' },
+        { ident: 'WI903', latitude: 47.22722, longitude: 11.28267, type: 'WIF' },
 
         // Tangentialer Bogenbeginn (0.43 NM westlich nach WI003 auf verlängertem Kurs 264°M)
-        { ident: 'WI004', latitude: 47.22694, longitude: 11.27218, type: 'WDF' },
+        { ident: 'WI904', latitude: 47.22694, longitude: 11.27218, type: 'WDF' },
 
         // Bogenende / Eindrehen auf Final 077°M (081°T) Richtung Piste 08
         { ident: 'VIS084', latitude: 47.25208, longitude: 11.26849, type: 'WAF' },
@@ -32,10 +32,10 @@ export const innsbruck: NavDataPackage = {
             ident: 'R08-C',
             runway: 'RW08',
             legs: [
-                { description: 'E  A', route: 'R', transition: null, path: 'IF', fix: 'WI001', fixType: 'terminal', altitudeDescription: '+', altitude: 4500, speed: 140 },
-                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI002', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 230, distance: 4.7 },
-                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI003', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 264, distance: 2.8 },
-                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI004', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 264, distance: 0.43 },
+                { description: 'E  A', route: 'R', transition: null, path: 'IF', fix: 'WI901', fixType: 'terminal', altitudeDescription: '+', altitude: 4500, speed: 140 },
+                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI902', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 230, distance: 4.7 },
+                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI903', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 264, distance: 2.8 },
+                { description: 'E  B', route: 'R', transition: null, path: 'TF', fix: 'WI904', fixType: 'terminal', altitudeDescription: '+', altitude: 3700, speed: 140, course: 264, distance: 0.43 },
                 { description: 'E  F', route: 'R', transition: null, path: 'RF', fix: 'VIS084', fixType: 'terminal', altitudeDescription: '+', altitude: 2850, speed: 140, turn: 'R', center: 'WI08C', arcLength: 0.76, course: 77 },
                 { description: 'G  M', route: 'R', transition: null, path: 'TF', fix: 'RW08', fixType: 'runway', altitudeDescription: '@', course: 77, distance: 2.6, verticalAngle: -3.5 },
                 { description: '    ', route: 'Z', transition: null, path: 'CA', altitudeDescription: '+', altitude: 6500, course: 77 }
