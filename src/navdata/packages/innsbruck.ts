@@ -29,7 +29,7 @@ export const innsbruck: NavDataPackage = {
     references: [],
     approaches: [
         {
-            ident: 'R08-Z',
+            ident: 'R08-C',
             runway: 'RW08',
             legs: [
                 { description: 'E  A', route: 'R', transition: null, path: 'IF', fix: 'WI001', fixType: 'terminal', altitudeDescription: '+', altitude: 4500, speed: 140 },
